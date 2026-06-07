@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Система органів управління у сфері охорони прав на об'єкти ІВ в Україні</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- КАНВАС ДЛЯ ЧАСТИНОК -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ПРОГРЕС-ЛІНІЯ -->
+<div class="progress-rail"><div class="progress-fill" id="progress-fill"></div></div>
+
+<!-- ЛІЧИЛЬНИК СЛАЙДІВ -->
+<div class="slide-counter" id="slide-counter">
+  <span class="sc-current" id="sc-current">01</span>
+  <span class="sc-sep"></span>
+  <span class="sc-total" id="sc-total">10</span>
+</div>
+
+<!-- НАВІГАЦІЙНІ КРАПКИ -->
+<nav class="dot-nav" id="dot-nav" aria-label="Навігація слайдами"></nav>
+
+<!-- КНОПКИ КЕРУВАННЯ -->
+<div class="ctrl-btns">
+  <button class="ctrl-btn" id="btn-prev" aria-label="Попередній слайд">
+    <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="ctrl-btn" id="btn-next" aria-label="Наступний слайд">
+    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<!-- ПІДКАЗКА СКРОЛУ -->
+<div class="scroll-hint-wrap" id="scroll-hint">
+  <span>гортай</span>
+  <div class="sh-line"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     СЛАЙДИ
+═══════════════════════════════════════════════ -->
+<main class="slides-wrap" id="slides-wrap">
+
+  <!-- СЛАЙД 0: ОБКЛАДИНКА -->
+  <section class="slide slide-cover" data-index="0">
+    <div class="slide-bg cover-bg">
+      <div class="cover-geo cover-geo-1"></div>
+      <div class="cover-geo cover-geo-2"></div>
+      <div class="cover-geo cover-geo-3"></div>
+    </div>
+    <div class="slide-content cover-content">
+      <div class="cover-chip anim-in" style="--i:0">Реферат · Патентознавство · 2026</div>
+      <h1 class="cover-h1">
+        <span class="ch-line anim-in" style="--i:1">Система органів управління</span>
+        <span class="ch-line ch-accent anim-in" style="--i:2">у сфері охорони прав</span>
+        <span class="ch-line anim-in" style="--i:3">на об'єкти інтелектуальної</span>
+        <span class="ch-line anim-in" style="--i:4">власності в Україні</span>
+      </h1>
+      <div class="cover-rule anim-in" style="--i:5"></div>
+      <div class="cover-meta anim-in" style="--i:6">
+        <div class="cm"><span>Заклад</span><strong>Ніжинський ДУ ім. М. Гоголя</strong></div>
+        <div class="cm"><span>Студент</span><strong>Стовбуха Р.С. · ІІІ рівень</strong></div>
+        <div class="cm"><span>Викладач</span><strong>Мельничук О.В.</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 1: ЗМІСТ -->
+  <section class="slide slide-toc" data-index="1">
+    <div class="slide-bg toc-bg"></div>
+    <div class="slide-content">
+      <div class="slide-label">Зміст</div>
+      <h2 class="slide-h2">Структура дослідження</h2>
+      <ol class="toc-list">
+        <li class="tl-item anim-stagger"><span class="tl-n">01</span><span class="tl-text">Теоретико-правові засади державного управління у сфері ІВ</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">02</span><span class="tl-text">Нормативно-правова база та об'єкти охорони</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">03</span><span class="tl-text">Трирівнева система органів управління</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">04</span><span class="tl-text">Хронологія ключових інституційних змін</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">05</span><span class="tl-text">Міжнародні договори України у сфері ІВ</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">06</span><span class="tl-text">Механізми захисту прав ІВ</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">07</span><span class="tl-text">Діаграми та інфографіка</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">08</span><span class="tl-text">Актуальні виклики системи</span></li>
+        <li class="tl-item anim-stagger"><span class="tl-n">09</span><span class="tl-text">Висновки та напрями вдосконалення</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 2: ЗАСАДИ -->
+  <section class="slide" data-index="2">
+    <div class="slide-bg theme-teal"></div>
+    <div class="slide-content two-col-slide">
+      <div class="col-text">
+        <div class="slide-label">Розділ 1</div>
+        <h2 class="slide-h2">Теоретико-правові засади</h2>
+        <p class="slide-p">Державне управління у сфері ІВ — організаційно-правова діяльність уповноважених органів, що реалізує <strong>чотири функції</strong>: нормотворчу, реєстраційну, контрольно-охоронну та міжнародну.</p>
+        <div class="key-distinction">
+          <div class="kd-item kd-left">
+            <div class="kd-title">Охорона прав</div>
+            <div class="kd-sub">Превентивна · Реєстраційні органи</div>
+            <div class="kd-desc">Юридичне визнання прав через офіційну процедуру</div>
+          </div>
+          <div class="kd-vs">≠</div>
+          <div class="kd-item kd-right">
+            <div class="kd-title">Захист прав</div>
+            <div class="kd-sub">Реактивна · Судові органи</div>
+            <div class="kd-desc">Відновлення порушених прав та притягнення до відповідальності</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-visual">
+        <div class="principles-wheel">
+          <div class="pw-center"><span id="pw-num">8</span><br><small>принципів</small></div>
+          <div class="pw-item pw-1">Законність</div>
+          <div class="pw-item pw-2">Системність</div>
+          <div class="pw-item pw-3">Розмежування функцій</div>
+          <div class="pw-item pw-4">Спеціалізація</div>
+          <div class="pw-item pw-5">Публічність</div>
+          <div class="pw-item pw-6">Міжнар. інтеграція</div>
+          <div class="pw-item pw-7">Ефективність</div>
+          <div class="pw-item pw-8">Баланс інтересів</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 3: НОРМАТИВНА БАЗА -->
+  <section class="slide" data-index="3">
+    <div class="slide-bg theme-dark"></div>
+    <div class="slide-content">
+      <div class="slide-label">Розділ 1.2</div>
+      <h2 class="slide-h2">Нормативно-правова база</h2>
+      <div class="pyramid-levels">
+        <div class="pl-row anim-stagger">
+          <div class="pl-badge" style="background:var(--teal)">Конституційний</div>
+          <div class="pl-content"><strong>Ст. 41 і 54 Конституції України 1996 р.</strong> — гарантують охорону ІВ як елемент конституційного статусу особи</div>
+        </div>
+        <div class="pl-row anim-stagger">
+          <div class="pl-badge" style="background:var(--sky)">Кодексовий</div>
+          <div class="pl-content"><strong>ЦК України, Книга четверта (ст. 418–508)</strong> — системоутворювальний акт; ст. 420 наводить невичерпний перелік об'єктів ІВ</div>
+        </div>
+        <div class="pl-row anim-stagger">
+          <div class="pl-badge" style="background:var(--yellow)">Законодавчий</div>
+          <div class="pl-content"><strong>Ключова реформа 2022:</strong> <a href="https://zakon.rada.gov.ua/laws/show/2811-20" target="_blank" class="sl">Закон № 2811-IX «Про авторське право і суміжні права»↗</a> — замінив закон 1993 р., адаптував до Директиви ЄС 2019/790. Діє вже 5-та редакція (листопад 2025)</div>
+        </div>
+        <div class="pl-row anim-stagger">
+          <div class="pl-badge" style="background:var(--red)">Підзаконний</div>
+          <div class="pl-content"><a href="https://zakon.rada.gov.ua/laws/show/903-2025-п" target="_blank" class="sl">Постанова КМУ № 903 від 21.07.2025↗</a> — чинне Положення про Мінекономіки. Фрагментованість підзаконних актів — визнана проблема системи</div>
+        </div>
+        <div class="pl-row anim-stagger">
+          <div class="pl-badge" style="background:#7a3d9e">Міжнародний</div>
+          <div class="pl-content">8 ключових міжнародних договорів (Паризька, Бернська конвенції, PCT, ТРІПС, WCT/WPPT, Мадрид, Угода про асоціацію з ЄС). Ст. 9 Конституції — частина нац. законодавства</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 4: СИСТЕМА ОРГАНІВ -->
+  <section class="slide slide-system" data-index="4">
+    <div class="slide-bg theme-teal"></div>
+    <div class="slide-content">
+      <div class="slide-label">Розділ 2</div>
+      <h2 class="slide-h2">Трирівнева система органів управління</h2>
+      <div class="sys-chart">
+        <!-- Рівень I -->
+        <div class="sys-tier">
+          <div class="sys-tier-label">Рівень I — Загальна компетенція</div>
+          <div class="sys-nodes sys-nodes-3">
+            <div class="sys-node sn-leg">
+              <div class="sn-icon">🏛</div>
+              <div class="sn-title">Верховна Рада</div>
+              <div class="sn-desc">Законодавча та ратифікаційна функції</div>
+            </div>
+            <div class="sys-node sn-pres">
+              <div class="sn-icon">🎖</div>
+              <div class="sn-title">Президент України</div>
+              <div class="sn-desc">Укази, законод. ініціатива, кадри</div>
+            </div>
+            <div class="sys-node sn-gov">
+              <div class="sn-icon">⚙</div>
+              <div class="sn-title">Кабінет Міністрів</div>
+              <div class="sn-desc">Інституційна архітектура системи</div>
+            </div>
+          </div>
+        </div>
+        <div class="sys-arrow">↓</div>
+        <!-- Рівень II -->
+        <div class="sys-tier">
+          <div class="sys-tier-label">Рівень II — Спеціальна компетенція</div>
+          <div class="sys-nodes sys-nodes-2">
+            <div class="sys-node sn-min">
+              <div class="sn-icon">📋</div>
+              <div class="sn-title">Мінекономіки</div>
+              <div class="sn-desc">Формування держ. політики у сфері ІВ. Постанова КМУ № 903 / 2025</div>
+            </div>
+            <div class="sys-node sn-noiv">
+              <div class="sn-icon">⭐</div>
+              <div class="sn-title">УКРНОІВІ</div>
+              <div class="sn-desc">Нац. орган ІВ з 08.11.2022. Реєстрація, патенти, свідоцтва, Апел. палата</div>
+            </div>
+          </div>
+        </div>
+        <div class="sys-arrow">↓</div>
+        <!-- Рівень III -->
+        <div class="sys-tier">
+          <div class="sys-tier-label">Рівень III — Органи захисту прав</div>
+          <div class="sys-nodes sys-nodes-4">
+            <div class="sys-node sn-court sn-warn">
+              <div class="sn-icon">⚖</div>
+              <div class="sn-title">ВСПІВ</div>
+              <div class="sn-badge">⚠ не функціонує</div>
+              <div class="sn-desc">Створений 2017, не запущений</div>
+            </div>
+            <div class="sys-node sn-court">
+              <div class="sn-icon">🏛</div>
+              <div class="sn-title">Суди загальної юрисдикції</div>
+              <div class="sn-desc">Цивільна, госп., адм. юрисдикції</div>
+            </div>
+            <div class="sys-node sn-court">
+              <div class="sn-icon">🛃</div>
+              <div class="sn-title">Митна служба + АМКУ</div>
+              <div class="sn-desc">Митний захист та конкурентне право</div>
+            </div>
+            <div class="sys-node sn-court">
+              <div class="sn-icon">👮</div>
+              <div class="sn-title">Поліція / Прокуратура</div>
+              <div class="sn-desc">Ст. 176, 177, 229 КК України</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 5: ХРОНОЛОГІЯ — вертикальний таймлайн у 2 колонки -->
+  <section class="slide slide-timeline" data-index="5">
+    <div class="slide-bg tl-bg"></div>
+    <div class="slide-content tl-content">
+      <div class="slide-label">Розділ 2.1–2.3</div>
+      <h2 class="slide-h2 tl-h2">Хронологія інституційних змін</h2>
+      <div class="vtl-grid">
+        <div class="vtl-col">
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">1991</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Чинність Паризької конвенції та Договору PCT для України</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">1993</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Перші спеціальні закони: авторське право, патенти, торг. марки, промислові зразки</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">1995</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Бернська конвенція набрала чинності для України</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">1996</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Конституція України — ст. 41 і 54 гарантують охорону ІВ</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">2003</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">ЦК України — Книга четверта «Право інтелектуальної власності» (чинна з 2004)</div>
+          </div>
+        </div>
+        <div class="vtl-col">
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">2008</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Угода ТРІПС набрала чинності — вступ України до СОТ</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">2014</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Угода про асоціацію з ЄС (ратиф. 16.09.2014) — Розділ V, Глава 9</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">2016</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Ліквідація ДСІВ → функції до Міністерства економіки</div>
+          </div>
+          <div class="vtl-item anim-stagger">
+            <div class="vtl-year">2017</div>
+            <div class="vtl-dot"></div>
+            <div class="vtl-body">Указ Президента № 299/2017 — утворення ВСПІВ (суд досі не функціонує)</div>
+          </div>
+          <div class="vtl-item vtl-highlight anim-stagger">
+            <div class="vtl-year">2022 ★</div>
+            <div class="vtl-dot vtl-dot-star"></div>
+            <div class="vtl-body">УКРНОІВІ як НОІВ (Розп. КМУ № 943-р) · Закон № 2811-IX · статус кандидата ЄС</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 6: МІЖНАРОДНЕ -->
+  <section class="slide" data-index="6">
+    <div class="slide-bg theme-teal"></div>
+    <div class="slide-content">
+      <div class="slide-label">Розділ 1.2 · Міжнародний рівень</div>
+      <h2 class="slide-h2">Міжнародні договори України</h2>
+      <div class="intl-grid-pres">
+        <a href="https://zakon.rada.gov.ua/laws/show/995_123" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">1883 / 1991</div><div class="ig-name">Паризька конвенція</div><div class="ig-tag">Промислова власність</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/995_051" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">1886 / 1995</div><div class="ig-name">Бернська конвенція</div><div class="ig-tag">Авторське право</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/895_001" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">1970 / 1991</div><div class="ig-name">Договір PCT</div><div class="ig-tag">Патентна кооперація</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/995_134" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">1891 / 2000</div><div class="ig-name">Мадридська система</div><div class="ig-tag">Торговельні марки</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/995_770" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">1996 / 2002</div><div class="ig-name">WCT / WPPT</div><div class="ig-tag">Цифрове середовище</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/981_018" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">1994 / 2008</div><div class="ig-name">Угода ТРІПС</div><div class="ig-tag">СОТ · торг. аспекти</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/984_011" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">2014 / 2014</div><div class="ig-name">Угода про асоціацію з ЄС</div><div class="ig-tag">Розділ V, Гл. 9 · acquis ЄС</div>
+        </a>
+        <a href="https://zakon.rada.gov.ua/laws/show/895_002" target="_blank" class="ig-card anim-stagger">
+          <div class="ig-year">2000 / PLT</div><div class="ig-name">Договір про патентне право</div><div class="ig-tag">Гармонізація процедур</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 7: ДІАГРАМИ -->
+  <section class="slide slide-charts" data-index="7">
+    <div class="slide-bg tl-bg"></div>
+    <div class="slide-content">
+      <div class="slide-label">Розділ 1.1 · ст. 420 ЦК</div>
+      <h2 class="slide-h2">Структура об'єктів ІВ та строки охорони</h2>
+      <div class="charts-split">
+        <!-- Donut -->
+        <div class="chart-wrap">
+          <div class="chart-sub">Об'єкти права ІВ (ст. 420 ЦК)</div>
+          <div class="donut-pres-wrap">
+            <svg id="donut-svg" viewBox="0 0 260 260" class="donut-pres-svg"></svg>
+            <div class="donut-pres-legend" id="donut-legend"></div>
+          </div>
+        </div>
+        <!-- Duration bars -->
+        <div class="chart-wrap">
+          <div class="chart-sub">Строки правової охорони (роки)</div>
+          <div class="dur-bars" id="dur-bars"></div>
+          <div class="dur-note"><span>∞</span> безстрокове продовження · <span>*</span> продовжується до 25 р.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 8: ВИКЛИКИ -->
+  <section class="slide slide-challenges" data-index="8">
+    <div class="slide-bg theme-dark"></div>
+    <div class="slide-content ch-slide-content">
+      <div class="ch-slide-header">
+        <div class="slide-label">Розділ 3.1</div>
+        <h2 class="slide-h2">Актуальні виклики системи</h2>
+      </div>
+      <div class="challenges-grid">
+        <div class="ch-card anim-stagger ch-red">
+          <div class="ch-icon">⚠️</div>
+          <div class="ch-num">01</div>
+          <div class="ch-title">Правова невизначеність УКРНОІВІ</div>
+          <div class="ch-body">Гібридна конструкція: юр. особа публічного права з делегованими владними повноваженнями — не є органом виконавчої влади. Відсутній окремий закон про НОІВ. Залежність від підзаконних актів, змінюваних у спрощеному порядку.</div>
+        </div>
+        <div class="ch-card anim-stagger ch-red">
+          <div class="ch-icon">⚖️</div>
+          <div class="ch-num">02</div>
+          <div class="ch-title">Незапуск ВСПІВ</div>
+          <div class="ch-body">Вищий суд з питань ІВ формально створений у 2017 р., але не функціонує. Пряме зауваження Єврокомісії (Звіт 2023). Складні вимоги до кандидатів у судді (5 р. досвіду у сфері ІВ) ускладнюють формування корпусу.</div>
+        </div>
+        <div class="ch-card anim-stagger ch-yellow">
+          <div class="ch-icon">🌐</div>
+          <div class="ch-num">03</div>
+          <div class="ch-title">Онлайн-піратство та контрафакція</div>
+          <div class="ch-body">У 2024 р. — 40% усіх справ у місцевих судах стосувалися порушень авторського права та суміжних прав. Транскордонний характер онлайн-порушень потребує міжнар. координації. Рада ЄС визначила злочини проти ІВ одним із 10 пріоритетів боротьби з орг. злочинністю на 2022–2025.</div>
+        </div>
+        <div class="ch-card anim-stagger ch-yellow">
+          <div class="ch-icon">🔍</div>
+          <div class="ch-num">04</div>
+          <div class="ch-title">Низька ефективність кримінального захисту</div>
+          <div class="ch-body">Ст. 176, 177, 229 КК — кількість справ, доведених до вироку, непропорційно мала. Причини: складність доведення умислу, недостатня спеціалізація слідчих, розбіжність між порогами матеріальної шкоди і реальним рівнем порушень.</div>
+        </div>
+        <div class="ch-card anim-stagger ch-teal">
+          <div class="ch-icon">🛡</div>
+          <div class="ch-num">05</div>
+          <div class="ch-title">Вплив воєнного стану</div>
+          <div class="ch-body">Повномасштабне вторгнення з 24.02.2022 обмежує адм. спроможності та фінансові ресурси. Закон № 2174-IX — автоматичне продовження строків процедур. Попри це — українці продовжують подавати заявки і реєструвати права.</div>
+        </div>
+        <div class="ch-card anim-stagger ch-teal">
+          <div class="ch-icon">📄</div>
+          <div class="ch-num">06</div>
+          <div class="ch-title">Фрагментованість підзаконного регулювання</div>
+          <div class="ch-body">Численні накази Мінекономіки різних часових періодів не завжди узгоджені між собою. Термінологічні колізії між ЦК і спеціальними законами 1990-х рр. ускладнюють правозастосування.</div>
+        </div>
+        <div class="ch-card anim-stagger ch-sky ch-wide">
+          <div class="ch-icon">🎓</div>
+          <div class="ch-num">07</div>
+          <div class="ch-title">Недостатня обізнаність суб'єктів господарювання</div>
+          <div class="ch-body">Рівень звернень до системи реєстрації та поінформованості бізнесу щодо можливостей правового захисту ІВ залишається недостатнім — особливо серед МСП. Мінекономіки та УКРНОІВІ системно працюють над підвищенням правової культури, але системної зміни ще не досягнуто.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- СЛАЙД 9: ВИСНОВКИ -->
+  <section class="slide slide-conclude" data-index="9">
+    <div class="slide-bg cover-bg">
+      <div class="cover-geo cover-geo-1" style="opacity:.4"></div>
+      <div class="cover-geo cover-geo-3" style="opacity:.3"></div>
+    </div>
+    <div class="slide-content">
+      <div class="slide-label">Висновки · Розділ 3</div>
+      <h2 class="slide-h2 slide-h2-light">Підсумки дослідження</h2>
+      <div class="conclude-cols">
+        <div class="cc-item anim-stagger">
+          <div class="cc-num">1</div>
+          <div class="cc-text"><strong>Трирівнева система:</strong> ВРУ + Президент + КМУ → Мінекономіки + УКРНОІВІ → суди, поліція, митниця, АМКУ</div>
+        </div>
+        <div class="cc-item anim-stagger">
+          <div class="cc-num">2</div>
+          <div class="cc-text"><strong>Нормативна база розгалужена,</strong> але закони промислової власності 1990-х рр. потребують системної модернізації</div>
+        </div>
+        <div class="cc-item anim-stagger">
+          <div class="cc-num">3</div>
+          <div class="cc-text"><strong>Правовий статус УКРНОІВІ</strong> — структурний дефіцит. Потрібен окремий закон про НОІВ</div>
+        </div>
+        <div class="cc-item anim-stagger">
+          <div class="cc-num">4</div>
+          <div class="cc-text"><strong>Незапуск ВСПІВ</strong> — критичний дефіцит. Пряме зауваження Єврокомісії (Звіт 2023)</div>
+        </div>
+        <div class="cc-item anim-stagger">
+          <div class="cc-num">5</div>
+          <div class="cc-text"><strong>Євроінтеграція:</strong> від мінімального наближення (Угода про асоціацію) до повного прийняття acquis ЄС (переговори з 2023)</div>
+        </div>
+        <div class="cc-item anim-stagger">
+          <div class="cc-num">6</div>
+          <div class="cc-text"><strong>Попри вторгнення:</strong> прийнято Закон № 2811-IX, запущено УКРНОІВІ, затверджено Стратегічний план 2024–2028</div>
+        </div>
+      </div>
+      <div class="conclude-sources anim-stagger">
+        <div class="cs-label">Ключові джерела</div>
+        <div class="cs-links">
+          <a href="https://zakon.rada.gov.ua/laws/show/2811-20" target="_blank">Закон № 2811-IX↗</a>
+          <a href="https://zakon.rada.gov.ua/laws/show/943-2022-р" target="_blank">Розп. КМУ № 943-р↗</a>
+          <a href="https://zakon.rada.gov.ua/laws/show/903-2025-п" target="_blank">Постанова КМУ № 903↗</a>
+          <a href="https://nipo.gov.ua" target="_blank">УКРНОІВІ↗</a>
+          <a href="https://neighbourhood-enlargement.ec.europa.eu/ukraine-report-2023_en" target="_blank">Звіт ЄК 2023↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>
